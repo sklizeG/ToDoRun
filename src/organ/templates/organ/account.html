@@ -1,0 +1,27 @@
+{% extends 'organ/base.html' %}
+
+{% block title %}Личный кабинет{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<main class="home">
+    <div class="home__container">
+        <h1 class="home__title">Здравствуйте, {{ request.user.username }}</h1>
+
+
+        <br>
+        <form action="{% url 'tasks' %}">
+            <button type="submit">Перейти в ваши задачи</button>
+        </form>
+        <br>
+
+        <button id="deleteAccountButton" type="button" class="home__button home__button--danger">
+            Удалить аккаунт
+        </button>
+        {% include 'organ/popup_confirm.html' %}
+
+    </div>
+</main>
+
+{% endblock %}

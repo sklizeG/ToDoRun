@@ -1,0 +1,92 @@
+{% load static %}
+<section class="home__hero hero">
+  <div class="hero__content">
+    <div class="hero__tags-container">
+      <div class="hero__tag">заметки</div>
+      <div class="hero__tag">упращают</div>
+      <div class="hero__tag">жизнь</div>
+    </div>
+
+    <h1 class="hero__title" id="typed-text"></h1>
+
+    {% if user.is_authenticated %}
+      <p class="hero__text" style="margin-bottom: 0;">
+        Добро пожаловать на главную страницу! Это лучшее приложение для создания
+        заметок и составления планов.
+      </p>
+    {% else %}
+      <p class="hero__text">
+        Добро пожаловать на главную страницу! Это лучшее приложение для создания
+        заметок и составления планов.
+      </p>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+    <div class="hero__buttons">
+      <button
+        type="button"
+        class="hero__button hero__button--primary"
+        onclick="location.href='{% url 'admin:index' %}'"
+      >
+        Админам
+      </button>
+    </div>
+    {% endif %}
+  </div>
+  <div class="hero__container-img">
+    <a href="{% url 'tasks' %}" data-transition="slide">
+      <article>
+        <div class="hero__container-link task-list"></div>
+      </article>
+    </a>
+    <a href="{% url 'calendar' %}" data-transition="slide">
+      <article>
+        <div class="hero__container-link task-calendar"></div>
+      </article>
+    </a>
+    <a href="{% url 'about' %}" data-transition="slide">
+      <article>
+        <div class="hero__container-link about-us"></div>
+      </article>
+    </a>
+  </div>
+</section>
+
+<style>
+  .hero__content {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  .hero__tags-container {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .hero__title {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .hero__text {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .hero__buttons {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .hero__container-img {
+    opacity: 0;
+  }
+  
+  .hero__container-img article {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+</style>
+
+{% comment %} анимация для hero {% endcomment %}
+<script src="{% static 'scripts/hero-transitions.js' %}"></script>
